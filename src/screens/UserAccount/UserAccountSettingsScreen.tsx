@@ -37,6 +37,9 @@ const UserAccountSettingsScreen: FC = () => {
         <View style={styles.premiumButton}>
           <BaseButton text="UPGRADE TO PREMIUM" onPress={() => console.log('clicked upgrade to premium')} />
         </View>
+        <View>
+          
+        </View>
       </View>
     </MainLayout>
   )

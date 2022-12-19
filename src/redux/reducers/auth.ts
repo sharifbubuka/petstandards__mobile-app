@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AuthService } from "services/firebase";
+// import { AuthService } from "services/firebase";
 
 export type InitialAuthState = {
   loggedIn: boolean,
@@ -16,7 +16,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     signup: (state: InitialAuthState, action: { payload: { email: string, password: string, username: string }, type: string }) => {
-      const user = AuthService.createUserWithEmailAndPassword({ email: action.payload.email, password: action.payload.password})
+      // const user = AuthService.createUserWithEmailAndPassword({ email: action.payload.email, password: action.payload.password})
     },
     signinWithEmailAndPassword: (state: InitialAuthState, action: { payload: {  }, type: string }) => {  
       state.loggedIn = true;

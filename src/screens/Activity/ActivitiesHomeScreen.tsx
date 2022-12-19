@@ -1,11 +1,13 @@
 import { FloatingActionButton, SectionSliderButton } from "components/Buttons";
+import { Calendar } from "components/Calendar";
 import { ActivityCard } from "components/Cards";
 import { ServiceCategoriesSlider, ServicesSlider } from "components/Sliders";
 import React, { FC, useState } from "react";
 import { Text, View, StyleSheet, FlatList, useWindowDimensions, StatusBar, ScrollView, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // import { PanG } from 'react-native-reanimated'
-import Swipeable from "react-native-gesture-handler/Swipeable";
+// import Swipeable from "react-native-gesture-handler/Swipeable";
+// import { Calendar, ExpandableCalendar } from 'react-native-calendars';
 
 const sections = [
   { name: 'Activities', title: 'Recurring activities' },
@@ -20,24 +22,7 @@ const ActivitiesHomeScreen: FC = () => {
   return (
     <View style={[styles.container, { paddingHorizontal: width * 0.05 }]}>
       <View>
-        {/* <View style={styles.buttons}>
-          {sections.map((section, index) => (
-            <SectionSliderButton
-              key={index}
-              label={section.name}
-              active={index === activeSectionIndex}
-              backgroundColor="#D7D7D7"
-              activeOpacity={0.7}
-              borderColor="#3B71F3"
-              borderWidth={4}
-              width='50%'
-              onPress={() => setActiveSectionIndex(index)}
-            />
-          ))}
-        </View> */}
-        <View style={styles.top}>
-          <Text style={styles.title}>{sections[activeSectionIndex].title}</Text>
-        </View>
+        <Text style={styles.title}>{sections[activeSectionIndex].title}</Text>
         <View style={styles.buttons}>
           {sections.map((section, index) => (
             <SectionSliderButton
@@ -47,14 +32,15 @@ const ActivitiesHomeScreen: FC = () => {
               backgroundColor="#D7D7D7"
               activeOpacity={0.7}
               borderColor="#3B71F3"
-              // borderColor="black"
               borderWidth={4}
               width='50%'
               onPress={() => setActiveSectionIndex(index)}
             />
           ))}
         </View>
-        <ActivityCard />
+        
+        {/* <Calendar /> */}
+        
       </View>
       <FloatingActionButton
         dimensions={60}
@@ -81,7 +67,7 @@ const styles = StyleSheet.create({
   buttons: {
     height: 50,
     backgroundColor: '#DFDFDF',
-    // marginTop: 10,
+    marginTop: 10,
     marginBottom: 20,
     flexDirection: 'row'
   },

@@ -1,12 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { HomeScreen } from 'screens/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ActivityScreen from 'screens/Activity/ActivityScreenStack';
 import { StartPetAccountScreen } from 'screens/PetAccount';
 import Ionicicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StartUserAccountScreen } from 'screens/UserAccount';
+import { Text } from 'react-native';
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const PrivateNavigator = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName='Home'
+          initialRouteName='Marketplace'
           backBehavior='history'
           screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
@@ -42,7 +43,7 @@ const PrivateNavigator = () => {
               tabBarShowLabel: false,
           })}
         >
-          <Tab.Screen name="Marketplace" component={HomeScreen} />
+          <Tab.Screen name="Marketplace" component={HomeStack} />
           
           <Tab.Screen name="Activity" component={ActivityScreen} />
 

@@ -1,8 +1,10 @@
+import { useAuth } from "context";
 import { FC } from "react";
 import BaseButton from "./BaseButton";
 
 const SocialSignInButtons: FC = () => {
-  const onSignInGoogle = () => console.warn("Sign in Google");
+  const { signinWithGoogle } = useAuth();
+  const onSignInGoogle = () => signinWithGoogle();
 
   const onSignInApple = () => console.warn("Sign in Apple");
 

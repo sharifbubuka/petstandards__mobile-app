@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PrivateNavigator from 'navigation/private/PrivateNavigator';
 import PublicNavigator from 'navigation/public/PublicNavigator';
-import { useAuth } from "hooks/auth";
+import { useAuth } from 'context';
+
 
 export default function MainNavigation() {
-  const { loggedIn } = useAuth();
+  const { getCurrentUser } = useAuth();
 
-  if (loggedIn) return <PrivateNavigator />
+  if (getCurrentUser()) return <PrivateNavigator />
   else return <PublicNavigator />
 }

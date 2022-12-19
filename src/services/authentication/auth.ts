@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 
 class AuthService {
-  private static auth: Auth = getAuth(firebase.getApp());
+  private static auth: Auth;
 
   public static createUserWithEmailAndPassword = async (data: { email: string, password: string }) => {
     const userCred = await signInWithEmailAndPassword(this.auth, data.email, data.password);

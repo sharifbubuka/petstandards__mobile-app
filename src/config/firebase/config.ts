@@ -1,6 +1,8 @@
+
 import * as firebase from 'firebase/app';
-import '@firebase/auth';
-import '@firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { 
   FIREBASE_API_KEY, 
   FIREBASE_APP_ID, 
@@ -23,6 +25,13 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID
 };
 
-firebase.initializeApp(firebaseConfig);
 
-export default firebase;
+let app; //!firebase.getApps().length && firebase.initializeApp(firebaseConfig);
+if (!firebase.getApps().length) firebase.initializeApp(firebaseConfig);
+
+// const auth = app && getAuth(app);
+// const storage = app && getStorage(app)
+// const firestore = app && getFirestore(app);
+
+// export { auth, storage, firestore }
+export { firebase };

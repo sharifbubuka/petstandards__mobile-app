@@ -8,9 +8,8 @@ import { BaseButton } from "components/Buttons";
 import SocialSignInButtons from "components/Buttons/SocialSignInButtons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "utils/regex";
-import { useAuth } from "hooks/auth";
-import { AuthService } from "services/firebase";
-
+import { AuthService } from "services/authentication";
+import { useAuth } from "context";
 
 const SignupScreen: FC = () => {
 
@@ -20,12 +19,12 @@ const SignupScreen: FC = () => {
   const { control, handleSubmit, watch } = useForm();
   const password = watch('password')
 
-  const { loggedIn, dispatchSignup } = useAuth();
-  console.log(loggedIn);
+  const { signin, signinWithGoogle, getCurrentUser, signup } = useAuth();
 
   const onRegisterPressed: SubmitHandler<any> = async ({ email, password, username }) => {
-    const userCred = await AuthService.createUserWithEmailAndPassword({ email, password })
+    // const userCred = await AuthService.createUserWithEmailAndPassword({ email, password })
     // dispatchSignup({ email, password, username });
+    signup(email, password);
     navigation.navigate('ConfirmEmail');
   };
 
@@ -52,7 +51,7 @@ const SignupScreen: FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.root, { minHeight: height }]}>
           <Text style={styles.title}>Create account</Text>
-          {loggedIn ? <Text>Logged In</Text> : <Text>Logged Out</Text>}
+          {true ? <Text>Logged In</Text> : <Text>Logged Out</Text>}
 
           <BaseInput 
             placeholder="Email address"
@@ -63,7 +62,6 @@ const SignupScreen: FC = () => {
 
           <BaseInput 
             placeholder="Username" 
-            keyboardType="email-address"
             name="username"
             control={control}
             rules={{ 

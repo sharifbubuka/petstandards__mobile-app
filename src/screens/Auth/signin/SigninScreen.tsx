@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import SocialSignInButtons from "components/Buttons/SocialSignInButtons";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAuth } from "context";
 
 const SigninScreen: FC = () => {
 
@@ -14,9 +15,11 @@ const SigninScreen: FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const { control, handleSubmit } = useForm();
+  const { signin } = useAuth();
 
-  const onSigninPressed: SubmitHandler<any> = (data) => {
-    console.log(data);
+  const onSigninPressed: SubmitHandler<any> = ({ email, password }) => {
+    // console.log(data);
+    signin(email, password)
     
     // validate user
     // set redux state
