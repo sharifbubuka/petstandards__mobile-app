@@ -7,16 +7,17 @@ type Props = {
   bgColor?: string,
   fgColor?: string,
   onPress: ((event: GestureResponderEvent) => void) | null | undefined
+  rounded?: number
 }
 
-const BaseButton: FC<Props> = ({ text, type = "Primary", onPress, bgColor, fgColor }) => {
+const BaseButton: FC<Props> = ({ text, type = "Primary", onPress, bgColor, fgColor, rounded = 0 }) => {
   return (
     <Pressable 
       onPress={onPress} 
       style={[
         styles.container, 
         styles[`container_${type}`],
-        bgColor ? { backgroundColor: bgColor } : {}
+        bgColor ? { backgroundColor: bgColor, borderRadius: rounded ? rounded : 0 } : { borderRadius: rounded ? rounded : 0 }
     ]}>
       <Text style={[
         styles[`text_${type}`],

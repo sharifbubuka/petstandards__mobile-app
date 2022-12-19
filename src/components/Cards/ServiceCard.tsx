@@ -65,6 +65,7 @@ const vetStyles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     width: 300,
+    
   },
   cardTop: {
     flexDirection: 'row',
