@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "standardpets",
-    "slug": "standardpets",
+    "slug": "pet-standards",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,10 +24,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.sharifbubuka.petstandards"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ea58a629-5dc4-4c76-9483-1bf3df4f2e22"
+      }
+    },
+    "owner": "sharifbubuka"
   }
 }

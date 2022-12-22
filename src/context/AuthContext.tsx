@@ -70,28 +70,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     provider.addScope('email');
 
     await signInWithRedirect(auth, provider);
-
-    // const result = await signInWithPopup(auth, provider)
-    //   .then(result => {
-    //     const credential = GoogleAuthProvider.credentialFromResult(result);
-    //     const token = credential && credential.accessToken;
-    //     const user = result.user; 
-    //     console.log(user);
-    //   })
-    //   .catch(error => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     const email = error.customData.email;
-    //     const credential = GoogleAuthProvider.credentialFromError(error);
-    //     console.log(errorCode, errorMessage, email, credential);
-        
-    //   })
-    // if (result) {
-    //   const user = result.user;
-    
-    //   const credential = GoogleAuthProvider.credentialFromResult(result);
-    //   const token = credential && credential.accessToken;
-    // }
   }
 
   const getCurrentUser = () => auth.currentUser;

@@ -1,1 +1,1 @@
-export { default as ActivitiesHomeScreen } from './ActivitiesHomeScreen';
+export { default as ActivitiesAndRemindersScreen } from './ActivitiesAndRemindersScreen';
