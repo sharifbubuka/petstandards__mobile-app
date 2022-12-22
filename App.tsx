@@ -1,8 +1,6 @@
 import { AuthProvider, NavigationContextProvider } from 'context';
+import NavigationController from 'navigation/controller';
 import { TouchableWithoutFeedback, Keyboard, View, Text } from 'react-native';
-import { Provider } from 'react-redux';
-import { store } from 'redux/store';
-import MainNavigation from './src/navigation/controller';
 
 export default function App() {
   const hideKeyboard = () => Keyboard.dismiss();
@@ -10,7 +8,7 @@ export default function App() {
   return (
     <AuthProvider>
         <TouchableWithoutFeedback onPress={hideKeyboard}>
-          <MainNavigation />
+          <NavigationController />
         </TouchableWithoutFeedback>
     </AuthProvider>
   );

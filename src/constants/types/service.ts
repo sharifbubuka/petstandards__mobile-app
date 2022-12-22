@@ -2,25 +2,27 @@ export type Service = {
 
 }
 
-export type VeterinaryService = {
+export default Service;
 
-}
+// export type VeterinaryService = {
 
-export type GroomingService = {
+// }
 
-}
+// export type GroomingService = {
 
-export type DogWalkingService = {
+// }
 
-}
+// export type DogWalkingService = {
 
-export type DogBoardingService = {
+// }
 
-}
+// export type DogBoardingService = {
 
-export type AdoptionService = {
+// }
+
+// export type AdoptionService = {
   
-}
+// }
 
 export type ServiceCategory = {
   category_id: string;
