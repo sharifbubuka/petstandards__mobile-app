@@ -39,11 +39,11 @@ const ConfirmEmailScreen: FC = () => {
             control={control}
           />
 
-          <BaseButton text="Confirm" onPress={handleSubmit(onConfirmPressed)} />
+          {/* <BaseButton text="Confirm" onPress={handleSubmit(onConfirmPressed)} />
 
           <BaseButton text="Resend code" onPress={onResendPressed} type="Secondary" />
 
-          <BaseButton text="Back to sign in" onPress={onSignInPressed} type="Tertiary" />
+          <BaseButton text="Back to sign in" onPress={onSignInPressed} type="Tertiary" /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

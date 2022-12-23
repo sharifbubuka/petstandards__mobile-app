@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { SectionSliderButton } from "components/Button";
+// import { SectionSliderButton } from "components/Button";
 import { ServiceCategoriesSlider, ServicesSlider } from "components/Carousel";
 import React, { FC, useState } from "react";
 import { Text, View, StyleSheet, FlatList, useWindowDimensions, StatusBar, ScrollView, TouchableHighlight } from "react-native";
@@ -24,7 +24,7 @@ const HomeScreen: FC = () => {
           <Text style={styles.nameGreeting}>Good evening Sharif</Text>
         </View>
         <View style={styles.buttons}>
-          {sections.map((section, index) => (
+          {/* {sections.map((section, index) => (
             <SectionSliderButton
               key={index}
               label={section.name}
@@ -36,7 +36,7 @@ const HomeScreen: FC = () => {
               width='50%'
               onPress={() => setActiveSectionIndex(index)}
             />
-          ))}
+          ))} */}
         </View>
         { sections[activeSectionIndex].name === 'Services' ? <HomeServicesSection navigation={navigation} /> : <></> }
       </ScrollView>

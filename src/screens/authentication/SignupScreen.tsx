@@ -8,7 +8,7 @@ import { BaseButton } from "components/Button";
 import SocialSignInButtons from "components/Button/SocialSignInButtons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "utils/regex";
-import { AuthService } from "services/authentication";
+// import { AuthService } from "services/authentication";
 import { useAuth } from "context";
 
 const SignupScreen: FC = () => {
@@ -92,18 +92,18 @@ const SignupScreen: FC = () => {
             }} 
           />
 
-          <BaseButton text="Register" onPress={handleSubmit(onRegisterPressed)} />
+          {/* <BaseButton text="Register" onPress={handleSubmit(onRegisterPressed)} /> */}
 
           <Text style={styles.terms}>
             By registering, you confirm that you accept our<Text onPress={onTermsOfUsePressed} style={styles.link}>
             {' '}Terms of Use{' '}</Text>and<Text onPress={onPrivacyPolicyPressed} style={styles.link}>{' '}Privacy Policy</Text>.
           </Text>
 
-          <BaseButton text="Forgot password?" onPress={onForgotPasswordPressed} type="Tertiary" />
+          {/* <BaseButton text="Forgot password?" onPress={onForgotPasswordPressed} type="Tertiary" />
 
           <SocialSignInButtons />
 
-          <BaseButton text="Have an account? Sign in." onPress={onSignInPressed} type="Tertiary" />
+          <BaseButton text="Have an account? Sign in." onPress={onSignInPressed} type="Tertiary" /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

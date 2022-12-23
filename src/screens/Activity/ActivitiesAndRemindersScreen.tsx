@@ -1,4 +1,4 @@
-import { FloatingActionButton, SectionSliderButton } from "components/Button";
+// import { FloatingActionButton, SectionSliderButton } from "components/Button";
 import { Calendar } from "components/Calendar";
 import { ActivityCard } from "components/Card";
 import { ServiceCategoriesSlider, ServicesSlider } from "components/Carousel";
@@ -24,7 +24,7 @@ const ActivitiesAndRemindersScreen: FC = () => {
       <View>
         <Text style={styles.title}>{sections[activeSectionIndex].title}</Text>
         <View style={styles.buttons}>
-          {sections.map((section, index) => (
+          {/* {sections.map((section, index) => (
             <SectionSliderButton
               key={index}
               label={section.name}
@@ -36,20 +36,20 @@ const ActivitiesAndRemindersScreen: FC = () => {
               width='50%'
               onPress={() => setActiveSectionIndex(index)}
             />
-          ))}
+          ))} */}
         </View>
         
         {/* <Calendar /> */}
         
       </View>
-      <FloatingActionButton
+      {/* <FloatingActionButton
         dimensions={60}
         right={width * 0.05}
         bottom={20}
         backgroundColor='#3B71F3'
         underlayColor="#628DF5"
         onPress={() => console.log('clicked')} 
-      />
+      /> */}
     </View>
   )
 }

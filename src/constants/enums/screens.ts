@@ -8,10 +8,10 @@ export enum AUTH_SCREEN_NAMES {
 }
 
 export enum PRIVATE_SCREEN_NAMES {
-  MARKETPLACE = 'Marketplace Stack',
-  ACTIVITY = 'Activity Stack',
-  PROFILE = 'Pet Profile Stack',
-  ACCOUNT = 'User Account Stack'
+  MARKETPLACE = 'Marketplace',
+  ACTIVITY = 'Activities',
+  PROFILE = 'Pet Profile',
+  ACCOUNT = 'Your Account'
 }
 
 export enum ONBOARDING_SCREEN_NAMES {

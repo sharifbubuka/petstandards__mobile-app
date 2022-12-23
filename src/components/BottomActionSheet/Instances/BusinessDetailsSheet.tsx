@@ -2,7 +2,7 @@ import { useRef, FC } from 'react';
 import { Text } from 'react-native';
 import ActionSheet, { ActionSheetRef, SheetProps } from 'react-native-actions-sheet';
 
-const ServiceProviderDetailsBottomActionSheet: FC<any> = (props: SheetProps<{ value: string }>) => {
+const BusinessDetailsBottomActionSheet: FC<any> = (props: SheetProps<{ value: string }>) => {
   // const actionSheetRef = useRef<ActionSheetRef>(null);
 
   return (
@@ -12,4 +12,4 @@ const ServiceProviderDetailsBottomActionSheet: FC<any> = (props: SheetProps<{ va
   )
 }
 
-export default ServiceProviderDetailsBottomActionSheet;
+export default BusinessDetailsBottomActionSheet;

@@ -1,1 +1,10 @@
 - BottomActionSheet
+- Progress
+  - CircularSnail
+  - ProgressBar
+- Modal - BUGS
+- Icon
+- Avatar
+- Typography
+- Toast 
+- Input

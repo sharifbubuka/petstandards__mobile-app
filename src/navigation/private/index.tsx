@@ -9,7 +9,9 @@ import { PRIVATE_SCREEN_NAMES } from 'constants/enums/screens';
 import PetProfileStack from './pet-profile';
 import UserAccoutStack from './user-account';
 import { SheetProvider } from "react-native-actions-sheet";
+import Toast from 'react-native-toast-message';
 import 'components/BottomActionSheet';
+import { ToastConfig } from 'components/Toast';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +56,7 @@ const PrivateNavigator = () => {
 
             <Tab.Screen name={PRIVATE_SCREEN_NAMES.ACCOUNT} component={UserAccoutStack} />
           </Tab.Navigator>
+          <Toast position='top' visibilityTime={6000} topOffset={50} config={ToastConfig} />
         </NavigationContainer>
       </SheetProvider>
     </SafeAreaProvider>

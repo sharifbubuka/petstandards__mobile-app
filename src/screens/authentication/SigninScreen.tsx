@@ -54,13 +54,13 @@ const SigninScreen: FC = () => {
             secureTextEntry={true} 
           />
 
-          <BaseButton text="Sign in" onPress={handleSubmit(onSigninPressed)} />
+          {/* <BaseButton text="Sign in" onPress={handleSubmit(onSigninPressed)} />
 
           <BaseButton text="Forgot password?" onPress={onForgotPasswordPressed} type="Tertiary" />
 
           <SocialSignInButtons />
 
-          <BaseButton text="Don't have an account? Sign up." onPress={onSignupPressed} type="Tertiary" />
+          <BaseButton text="Don't have an account? Sign up." onPress={onSignupPressed} type="Tertiary" /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

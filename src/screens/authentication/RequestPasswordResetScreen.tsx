@@ -37,9 +37,9 @@ const ForgotPasswordScreen: FC = () => {
             rules={{ required: 'Email address is required.' }} 
           />
 
-          <BaseButton text="Send Confirmation Code" onPress={handleSubmit(onSendCodePressed)} />
+          {/* <BaseButton text="Send Confirmation Code" onPress={handleSubmit(onSendCodePressed)} />
 
-          <BaseButton text="Back to sign in" onPress={onSignInPressed} type="Tertiary" fgColor="#FDB075" />
+          <BaseButton text="Back to sign in" onPress={onSignInPressed} type="Tertiary" fgColor="#FDB075" /> */}
         </View>
       </ScrollView>
     </SafeAreaView>
