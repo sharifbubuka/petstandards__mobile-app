@@ -10,9 +10,11 @@ import { BaseAvatar } from 'components/Avatar';
 import { BaseTypography } from 'components/Typography';
 import Toast from 'react-native-toast-message';
 import { BaseInput } from 'components/TextInput';
+import { useTheme } from 'context/theme';
 
 export const TestScreen: FC = () => {
   const [visible, setVisible] = useState(true);
+  const { toggleTheme} = useTheme();
   const showToast = () => {
     Toast.show({
       type: 'info',
@@ -60,6 +62,8 @@ export const TestScreen: FC = () => {
       {/* <Button title='Show toast' onPress={showToast} /> */}
 
       {/* Input */}
+      <Text>{test}</Text>
+      <Button title='Toggle Theme' onPress={toggleTheme} />
     </View>
   )
 }
