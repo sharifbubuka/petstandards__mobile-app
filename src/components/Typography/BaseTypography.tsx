@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { Text, StyleSheet, TextProps, TextStyle } from 'react-native';
 
 type Props = {
-  type: 'display' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'caption'
-  children: string
-  styles?: TextStyle
+  type?: 'display' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'caption'
+  children: string | string[]
+  styles?: TextStyle | TextStyle[]
   textProps?: TextProps
   wordCount?: number | undefined
   endText?: string |undefined,
@@ -22,7 +22,7 @@ type Props = {
 }
 
 const BaseTypography: FC<Props> = ({
-  type,
+  type = 'p',
   children,
   styles = {
     color: 'black',
@@ -47,8 +47,8 @@ const BaseTypography: FC<Props> = ({
     <Text 
       style={[
         baseStyles.standard, 
-        styles,
-        baseStyles[`${type}`]
+        baseStyles[`${type}`],
+        styles
       ]}
       { ...textProps }
       // accessibilityLabel={children.toString()}

@@ -56,7 +56,18 @@ const ICONS_REGISTRY = {
   'info-circle': LIBRARY_NAMES.FONTAWESOME5BRANDS,
   'exclamation-triangle': LIBRARY_NAMES.FONTAWESOME,
   'times-circle': LIBRARY_NAMES.FONTAWESOME,
-  'check-circle': LIBRARY_NAMES.FONTAWESOME 
+  'check-circle': LIBRARY_NAMES.FONTAWESOME,
+  'ios-moon-sharp': LIBRARY_NAMES.IONICONS, 
+  'ios-sunny-sharp': LIBRARY_NAMES.IONICONS, 
+  'plus': LIBRARY_NAMES.ENTYPO,
+  'minus': LIBRARY_NAMES.ENTYPO,
+  'lock': LIBRARY_NAMES.MATERIALCOMMUNITY,
+  'lock-open': LIBRARY_NAMES.MATERIALCOMMUNITY,
+  'account-circle': LIBRARY_NAMES.MATERIALCOMMUNITY,
+  'contact-support': LIBRARY_NAMES.MATERIALICONS,
+  'payments': LIBRARY_NAMES.MATERIALICONS,
+  'notifications': LIBRARY_NAMES.IONICONS,
+  'arrow-back-sharp': LIBRARY_NAMES.IONICONS
 };
 
 const BaseIcon: FC<Props> = ({

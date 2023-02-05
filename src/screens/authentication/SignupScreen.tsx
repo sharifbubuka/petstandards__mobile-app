@@ -1,110 +1,118 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { StyleSheet, useWindowDimensions, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { BaseInput } from 'components/TextInput'
 import { BaseButton } from "components/Button";
-import SocialSignInButtons from "components/Button/SocialSignInButtons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "utils/regex";
-// import { AuthService } from "services/authentication";
 import { useAuth } from "context";
+import { FormControlledInput } from "components/TextInput/Instances";
+import { ICON_NAMES } from "components/Icon";
+import { LoadableButton } from "components/Button/Instances";
+import { AUTH_SCREEN_NAMES } from "constants/enums/screens";
 
 const SignupScreen: FC = () => {
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [signupInProgress, setsignupInProgress] = useState<boolean>(false);
 
   const { height } = useWindowDimensions();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const { control, handleSubmit, watch } = useForm();
-  const password = watch('password')
+  const password = watch('password1')
 
-  const { signin, signinWithGoogle, getCurrentUser, signup } = useAuth();
+  const { signin,  signup } = useAuth();
 
-  const onRegisterPressed: SubmitHandler<any> = async ({ email, password, username }) => {
-    // const userCred = await AuthService.createUserWithEmailAndPassword({ email, password })
-    // dispatchSignup({ email, password, username });
-    signup(email, password);
+  const onSignupPressed: SubmitHandler<any> = async ({ email, password1, password2, username }) => {
+    setsignupInProgress(true);
+    signup(email, password1);
     navigation.navigate('ConfirmEmail');
   };
 
-  const onTermsOfUsePressed = () => {
-    console.warn("Terms of Use Pressed");
-    // navigation.navigate('TermsOfUse');
-  };
-
-  const onPrivacyPolicyPressed = () => {
-    console.warn("Privacy Policy Pressed");
-    // navigation.navigate('PrivacyPolicy');
-  };
-
-  const onForgotPasswordPressed = () => {
-    navigation.navigate('ForgotPassword');
-  };
-
-  const onSignInPressed = () => {
-    navigation.navigate('Signin');
-  };
+  const onSigninPressed = () => {
+    navigation.navigate(AUTH_SCREEN_NAMES.SIGN_IN);
+  }
 
   return (
-    <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={[styles.root, { minHeight: height }]}>
-          <Text style={styles.title}>Create account</Text>
-          {true ? <Text>Logged In</Text> : <Text>Logged Out</Text>}
+    <SafeAreaView style={[styles.root]}>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+        <View>
+          <View style={[styles.header, { marginTop: height * 0.01 }]}>
+            <Text style={styles.title}>Welcome to Pet Master{' '}👋</Text>
+            <Text style={styles.sub_title}>The first pets care and management mobile app in Uganda. 
+              Please create an account to access the goodies.
+            </Text>
+          </View>
+          <View style={styles.form}>
+            <FormControlledInput
+              control={control}
+              name='email'
+              rules={{ 
+                required: 'Email is required', 
+                pattern: { value: EMAIL_REGEX, message: 'Email is invalid'} 
+              }}
+              inputProps={{
+                placeholder: 'Email'
+              }}
+              styles={styles.input}
+            />
 
-          <BaseInput 
-            placeholder="Email address"
-            name="email"
-            control={control}
-            rules={{ required: 'Email is required', pattern: { value: EMAIL_REGEX, message: 'Email is invalid'} }} 
-          />
+            <FormControlledInput
+              control={control}
+              name='username'
+              rules={{ 
+                required: 'Username is required', 
+                max: { value: 24, message: 'Username should be less than 24 characters' 
+              }}} 
+              inputProps={{
+                placeholder: 'Username'
+              }}
+              styles={styles.input}
+            />
 
-          <BaseInput 
-            placeholder="Username" 
-            name="username"
-            control={control}
-            rules={{ 
-              required: 'Username is required',
-              max: { value: 24, message: 'Username should be less than 24 characters' }
-            }} 
-          />
+            <FormControlledInput
+              control={control}
+              name='password1'
+              rules={{ 
+                required: 'Password is requried.',
+                min: { value: 8, message: 'Password should be at least 8 characters' } 
+              }}
+              inputProps={{
+                placeholder: 'Enter password',
+                secureTextEntry: true
+              }}
+              styles={styles.input}
+            />
 
-          <BaseInput 
-            placeholder="Password" 
-            keyboardType="visible-password" 
-            secureTextEntry={true}
-            name="password"
-            control={control}
-            rules={{ 
-              required: 'Password is requried.',
-              min: { value: 8, message: 'Password should be at least 8 characters' } 
-            }}
-          />
+            <FormControlledInput
+              control={control}
+              name='password2'
+              icon={passwordVisible ? ICON_NAMES.OPEN_EYE : ICON_NAMES.CLOSED_EYE}
+              iconColor='#757b6c'
+              onIconPress={() => setPasswordVisible(!passwordVisible)}
+              rules={{
+                validate: (value: string) => value === password || 'Passwords do not match'
+              }} 
+              inputProps={{
+                placeholder: 'Re-enter password',
+                secureTextEntry: passwordVisible
+              }}
+              styles={styles.input}
+            />
 
-          <BaseInput 
-            placeholder="Repeat Password" 
-            secureTextEntry={true}
-            name="passwordRepeat"
-            control={control}
-            rules={{
-              validate: (value: string) => value === password || 'Passwords do not match'
-            }} 
-          />
-
-          {/* <BaseButton text="Register" onPress={handleSubmit(onRegisterPressed)} /> */}
-
-          <Text style={styles.terms}>
-            By registering, you confirm that you accept our<Text onPress={onTermsOfUsePressed} style={styles.link}>
-            {' '}Terms of Use{' '}</Text>and<Text onPress={onPrivacyPolicyPressed} style={styles.link}>{' '}Privacy Policy</Text>.
-          </Text>
-
-          {/* <BaseButton text="Forgot password?" onPress={onForgotPasswordPressed} type="Tertiary" />
-
-          <SocialSignInButtons />
-
-          <BaseButton text="Have an account? Sign in." onPress={onSignInPressed} type="Tertiary" /> */}
+            <LoadableButton 
+              styles={styles.submitBtn} 
+              loading={signupInProgress} 
+              onPress={handleSubmit(onSignupPressed)}
+            >Create Account</LoadableButton>
+          </View>
         </View>
+        <Text style={styles.signIn}>
+          Already have an account?
+          <Text onPress={onSigninPressed} style={styles.signInLink}>{' '}Sign In</Text>
+        </Text>
       </ScrollView>
     </SafeAreaView>
   )
@@ -114,20 +122,42 @@ export default SignupScreen;
 
 const styles = StyleSheet.create({
   root: {
-    alignItems: 'center',
-    padding: 20
+    flex: 1,
+    padding: 25,
+    backgroundColor: '#f3faea'
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  header: {
+    marginBottom: 40
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
+    marginBottom: 5,
   	color: '#051C68',
-    margin: 10
+    width: '100%'
   },
-  terms: {
-    color: 'gray',
-    marginVertical: 10
+  sub_title: {
+    color: '#464a41'
   },
-  link: {
-    color: '#FDB075'
+  form: {
+
+  },
+  input: {
+    marginBottom: 10,
+  },
+  submitBtn: {
+    marginTop: 10,
+    marginBottom: 20
+  },
+  signIn: {
+    color: '#464a41',
+    textAlign: 'center'
+  },
+  signInLink: {
+    fontWeight: '500'
   }
 });

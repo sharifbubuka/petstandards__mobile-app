@@ -1,11 +1,11 @@
 import { BaseIcon, ICON_NAMES } from 'components/Icon';
 import { FC } from 'react';
-import { View, Pressable, Image } from 'react-native';
+import { View, Pressable, Image, ViewStyle } from 'react-native';
 
 type Props = {
   avatarType?: 'circular'
   imageSource?: string
-  avatarSize?: number
+  size?: number
   marginLeft?: number
   marginRight?: number
   marginTop?: number
@@ -22,11 +22,12 @@ type Props = {
   badgeText?: string
   badgeTextColor?: string
   onPress?: () => null
+  style?: ViewStyle | ViewStyle[]
 } 
 
 const BaseAvatar: FC<Props> = ({
   avatarType = 'circular',
-  avatarSize = 50,
+  size = 50,
   imageSource,
   marginLeft = 0,
   marginRight = 0,
@@ -43,15 +44,16 @@ const BaseAvatar: FC<Props> = ({
   badgeColor = 'green',
   badgeText = undefined,
   badgeTextColor = 'white',
-  onPress = undefined
+  onPress = undefined,
+  style
 }) => {
   if (!onPress) {
     if (imageSource) {
       return (
         <View
-        style={{
-          width: avatarSize,
-          height: avatarSize,
+        style={[{
+          width: size,
+          height: size,
           overflow: 'hidden',
           justifyContent: 'center',
           alignItems: 'center',
@@ -61,14 +63,14 @@ const BaseAvatar: FC<Props> = ({
           marginBottom: marginBottom,
           borderRadius: avatarType === 'circular' ? 100 : avatarBorderRadius,
           // backgroundColor: '#D8D9CF'
-        }}
+        }, style]}
       >
         <Image 
-          style={{ 
+          style={[{ 
             width: '100%', 
             height: '100%',
             borderRadius: avatarType === 'circular' ? 100 : avatarBorderRadius, 
-          }} 
+          }]} 
           source={{ uri: imageSource }} 
         />
       </View>
@@ -76,9 +78,9 @@ const BaseAvatar: FC<Props> = ({
     } else {
       return (
         <View 
-          style={{
-            width: avatarSize,
-            height: avatarSize,
+          style={[{
+            width: size,
+            height: size,
             overflow: 'hidden',
             justifyContent: 'center',
             alignItems: 'center',
@@ -87,9 +89,9 @@ const BaseAvatar: FC<Props> = ({
             marginTop: marginTop,
             marginBottom: marginBottom,
             borderRadius: avatarType === 'circular' ? 100 : avatarBorderRadius,
-          }}
+          }, style]}
         >
-          <BaseIcon name={ICON_NAMES.USER} size={avatarSize * 0.6} color='#73777B' />
+          <BaseIcon name={ICON_NAMES.ACCOUNT_CIRCLE} size={size} color='#73777B' />
         </View>
       )
     }

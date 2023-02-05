@@ -1,3 +1,5 @@
+import { DarkThemeColor, LightThemeColor } from "./colors"
+
 type Theme = {
   colors: {
     dark: {},
@@ -19,12 +21,8 @@ const darkTheme = {
 
 export const Theme: Theme = {
   colors: {
-    dark: {
-
-    },
-    light: {
-
-    }
+    dark: DarkThemeColor,
+    light: LightThemeColor
   },
   spacing: {},
   typography: {},

@@ -1,5 +1,6 @@
 import { BaseIcon, ICON_NAMES } from "components/Icon";
-import { FC } from "react";
+import { CircularProgress } from "components/Progress";
+import { FC, useEffect, useState } from "react";
 import { StyleSheet, Text, GestureResponderEvent, View, TouchableHighlight, ViewStyle } from "react-native";
 
 type Props = {
@@ -9,10 +10,29 @@ type Props = {
   iconSize?: number
   color?: string
   styles?: ViewStyle
-  onPress: ((event: GestureResponderEvent) => void)
+  loading: boolean
+  loadingText?: string 
+  loaderIconSize?: number
+  onPress: (() => void)
 }
 
-const BaseButton: FC<Props> = ({ children, type = 'primary', onPress, icon, iconSize = 22, styles, color = 'white' }) => {
+const LoadableButton: FC<Props> = ({ 
+  children, 
+  type = 'primary', 
+  styles, loading, 
+  loadingText, 
+  onPress, 
+  icon, 
+  iconSize,
+  loaderIconSize = 15, 
+  color = 'white' 
+}) => {
+  const [isLoading, setIsLoading] = useState(loading);
+
+  useEffect(() => {
+    setIsLoading(loading);
+  }, [loading])
+  
   return (
     <TouchableHighlight 
       style={[baseStyles.wrapper, styles]} 
@@ -24,26 +44,25 @@ const BaseButton: FC<Props> = ({ children, type = 'primary', onPress, icon, icon
         {icon && <View style={baseStyles.icon}>
           <BaseIcon name={icon} size={iconSize} color={color} />
         </View>}
-        <Text style={[baseStyles.text, { color: color }]}>{children}</Text>
+        {isLoading && <CircularProgress 
+          rotating={isLoading} 
+          size={loaderIconSize} 
+          color='white' 
+          borderWidth={2}
+          strokeCap='round' 
+          styles={{ marginRight: 7 }}  
+        />}
+        <Text style={[baseStyles.text, { color: color }]}>{isLoading && loadingText ? loadingText : children}</Text>
       </View>
     </TouchableHighlight>
   )
 }
 
-export default BaseButton;
+export default LoadableButton;
 
 const baseStyles = StyleSheet.create({
   wrapper: {
-    borderRadius: 10,
-    shadowColor: "#111",
-    width: '100%',
-    // shadowOffset: {
-	  // width: 100,
-	  // height: 12,
-    // },
-    // shadowOpacity: 0.58,
-    // shadowRadius: 16.00,
-    // elevation: 5
+    borderRadius: 10
   },
   button: {
     flexDirection: 'row',
@@ -66,7 +85,7 @@ const baseStyles = StyleSheet.create({
     color: 'white',
   },
   button_primary: {
-    backgroundColor: '#752ed1',
+    backgroundColor: '#051C68',
   },
   button_secondary: {
     backgroundColor: 'green',
@@ -74,4 +93,4 @@ const baseStyles = StyleSheet.create({
   button_tertiary: {
     backgroundColor: 'red',
   }
-})
+});

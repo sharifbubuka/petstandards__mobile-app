@@ -4,9 +4,9 @@ import { useAuth } from 'context';
 
 
 function NavigationController() {
-  const { getCurrentUser } = useAuth();
+  const { currentUser } = useAuth();
 
-  if (getCurrentUser()) return <PrivateNavigator />
+  if (currentUser) return <PrivateNavigator />
   else return <PublicNavigator />
 }
 

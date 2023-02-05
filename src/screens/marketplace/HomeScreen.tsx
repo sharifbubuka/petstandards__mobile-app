@@ -1,85 +1,71 @@
-import { useNavigation } from "@react-navigation/native";
-// import { SectionSliderButton } from "components/Button";
-import { ServiceCategoriesSlider, ServicesSlider } from "components/Carousel";
-import React, { FC, useState } from "react";
-import { Text, View, StyleSheet, FlatList, useWindowDimensions, StatusBar, ScrollView, TouchableHighlight } from "react-native";
+import { FC } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HomeServicesSection from './services/HomeServicesSection';
-
-const sections = [
-  { name: 'Services' },
-  { name: 'Products' }
-]
+import { BaseIcon, ICON_NAMES } from "components/Icon";
+import { ACCOUNT_SCREEN_NAMES } from "constants/enums/screens";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const HomeScreen: FC = () => {
-  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   
-  const { width } = useWindowDimensions();
-  const navigation = useNavigation();
-
   return (
-    <View style={[styles.container, { paddingHorizontal: width * 0.05 }]}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.top}>
-          <Text style={styles.nameGreeting}>Good evening Sharif</Text>
+    <SafeAreaView style={styles.root}>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Text style={styles.title}>Marketplace</Text>
+          </View>
+          <View style={styles.headerRight}>
+            <BaseIcon name={ICON_NAMES.ELLIPSIS} size={30} color='#051C68' />
+          </View>
         </View>
-        <View style={styles.buttons}>
-          {/* {sections.map((section, index) => (
-            <SectionSliderButton
-              key={index}
-              label={section.name}
-              active={index === activeSectionIndex}
-              backgroundColor="#D7D7D7"
-              activeOpacity={0.7}
-              borderColor="#3B71F3"
-              borderWidth={4}
-              width='50%'
-              onPress={() => setActiveSectionIndex(index)}
-            />
-          ))} */}
+        <View style={styles.greetingsBox}>
+          <Text style={styles.greeting}>Hi, Sharif 👋</Text>
+          <Text style={styles.request}>What can we get Pixel today?</Text>
         </View>
-        { sections[activeSectionIndex].name === 'Services' ? <HomeServicesSection navigation={navigation} /> : <></> }
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    marginVertical: 10
+    padding: 25,
+    paddingTop: 20,
+    backgroundColor: '#f5fbee'
   },
-  top: {
-    marginBottom: 20
+  container: {},
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 15
   },
-  buttons: {
-    height: 50,
-    backgroundColor: '#DFDFDF',
-    marginBottom: 20,
-    flexDirection: 'row'
+  headerLeft: {},
+  headerRight: {},
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#051C68',
   },
-  button: {
-    width: '50%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '400'
+  greetingsBox: {
+
   },
   greeting: {
-    // marginBottom: 10
-  },
-  nameGreeting: {
-    fontSize: 26,
-    fontWeight: '600',
-    // marginBottom: 0
-  },
-  question: {
     fontSize: 20,
-    fontWeight: '500',
-    color: '#5A5A5A'
+    marginBottom: 5,
+    // fontWeight: 'bold',
+    // color: '#051C68',
+  },
+  request: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#051C68',
   }
+
+  
 });

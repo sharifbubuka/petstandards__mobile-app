@@ -48,7 +48,7 @@ const MarketplaceStack: FC = () => {
 
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name={MARKETPLACE_SCREEN_NAMES.HOME} component={TestScreen} />
+      <HomeStack.Screen name={MARKETPLACE_SCREEN_NAMES.HOME} component={HomeScreen} />
       <HomeStack.Screen name={MARKETPLACE_SCREEN_NAMES.SERVICES} component={MarketplaceServicesStack} />
       <HomeStack.Screen name={MARKETPLACE_SCREEN_NAMES.PRODUCTS} component={MarketplaceProductsStack} />
     </HomeStack.Navigator>

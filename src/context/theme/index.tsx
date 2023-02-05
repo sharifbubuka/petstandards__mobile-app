@@ -4,6 +4,10 @@ import { Theme } from "theme";
 
 type ContextState = {
   toggleTheme: () => void
+  theme: {
+    
+  }
+  currentTheme: 'light' | 'dark'
 }
 
 const ThemeContext = createContext({} as ContextState);
@@ -22,13 +26,13 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const toggleTheme = () => setIsDarkMode(prevMode => !prevMode);
 
-  const values = {
+  const values: ContextState = {
     toggleTheme,
-    Theme: {
+    theme: {
       ...Theme,
       colors: isDarkMode ? Theme.colors.dark : Theme.colors.light,
     },
-    test: isDarkMode ? 'dark' : 'light'
+    currentTheme: isDarkMode ? 'dark' : 'light'
   }
 
   return (

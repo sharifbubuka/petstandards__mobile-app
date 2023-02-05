@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { View, ViewStyle } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 type Props = {
@@ -17,7 +18,8 @@ type Props = {
   direction?: 'clockwise' | 'counter-clockwise'
   fill?: string | undefined
   color?: string
-  strokeCap?: 'round' | 'butt' | 'square'
+  strokeCap?: 'round' | 'butt' | 'square',
+  styles?: ViewStyle
 }
 
 const CircularProgress: FC<Props> = ({
@@ -36,27 +38,30 @@ const CircularProgress: FC<Props> = ({
   allowFontScaling = true,
   direction = 'clockwise',
   color = 'rgba(0, 122, 255, 1)',
-  strokeCap = 'butt'
+  strokeCap = 'butt',
+  styles,
 }) => {
   return (
-    <Progress.Circle
-      animated={animated}
-      indeterminate={rotating}
-      progress={progress}
-      color={color}
-      unfilledColor={unfilledColor}
-      borderWidth={borderWidth}
-      borderColor={borderColor ? borderColor : color}
-      size={size}
-      fill={fill}
-      thickness={thickness}
-      showsText={showsText}
-      formatText={formatText}
-      textStyle={textStyle}
-      allowFontScaling={allowFontScaling}
-      direction={direction}
-      strokeCap={strokeCap}
-    />
+    <View style={[styles && styles]}>
+      <Progress.Circle
+        animated={animated}
+        indeterminate={rotating}
+        progress={progress}
+        color={color}
+        unfilledColor={unfilledColor}
+        borderWidth={borderWidth}
+        borderColor={borderColor ? borderColor : color}
+        size={size}
+        fill={fill}
+        thickness={thickness}
+        showsText={showsText}
+        formatText={formatText}
+        textStyle={textStyle}
+        allowFontScaling={allowFontScaling}
+        direction={direction}
+        strokeCap={strokeCap}
+      />
+    </View>
   )
 }
 

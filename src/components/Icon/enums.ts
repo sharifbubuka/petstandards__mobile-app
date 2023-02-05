@@ -10,11 +10,22 @@ export enum ICON_NAMES {
   DOG_PAW = 'md-paw-sharp',
   DOG = 'dog',
   USER = 'person-sharp',
+  ACCOUNT_CIRCLE = 'account-circle',
   APPLE_LOGO = 'apple',
   GOOGLE_LOGO = 'google',
   CARET_DOWN = 'chevron-down',
   SUCCESS = 'check-circle',
   ERROR = 'times-circle',
   WARN = 'exclamation-triangle',
-  INFO = 'info-circle'
+  INFO = 'info-circle',
+  MOON = 'ios-moon-sharp',
+  SUN = 'ios-sunny-sharp',
+  PLUS = 'plus',
+  MINUS = 'minus',
+  LOCK_CLOSED = 'lock',
+  LOCK_OPEN = 'lock-open',
+  CONTACT_SUPPORT = 'contact-support',
+  PAYMENTS = 'payments',
+  PREFERENCES = 'notifications',
+  BACK_ARROW = 'arrow-back-sharp'
 }

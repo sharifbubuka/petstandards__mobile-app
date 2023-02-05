@@ -27,7 +27,6 @@ import { createContext, FC, ReactNode, useContext, useEffect, useState } from "r
 
 type ContextState = {
   currentUser: User | null
-  getCurrentUser: () => User | null
   signup: (email: string, password: string) => void
   signin: (email: string, password: string) => Promise<UserCredential>
   signinWithGoogle: () => void
@@ -72,13 +71,10 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     await signInWithRedirect(auth, provider);
   }
 
-  const getCurrentUser = () => auth.currentUser;
-
   const signout = () => signOut(auth);
 
   const values: ContextState = {
     currentUser,
-    getCurrentUser,
     signup,
     signin,
     signinWithGoogle,

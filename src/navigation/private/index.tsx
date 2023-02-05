@@ -12,6 +12,18 @@ import { SheetProvider } from "react-native-actions-sheet";
 import Toast from 'react-native-toast-message';
 import 'components/BottomActionSheet';
 import { ToastConfig } from 'components/Toast';
+import { FC } from 'react';
+import { Pressable } from 'react-native';
+import { Text } from 'react-native-svg';
+import { BaseIcon, ICON_NAMES } from 'components/Icon';
+
+const TabBarButton: FC = () => {
+  return (
+    <Pressable>
+      <Text>ME</Text>
+    </Pressable>
+  )
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -24,31 +36,29 @@ const PrivateNavigator = () => {
             initialRouteName={PRIVATE_SCREEN_NAMES.MARKETPLACE}
             backBehavior='history'
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = '';
+                tabBarIcon: ({ focused, color, size  }) => {
                   let routeName = route.name;
                   if (routeName === PRIVATE_SCREEN_NAMES.MARKETPLACE) {
-                    iconName = 'home-variant';
-                    return<MaterialIcon style={{  }} name={iconName} size={27} color={focused ? 'black' : color} />
+                    return<BaseIcon name={ICON_NAMES.HOME} size={30} color={focused ? '#051C68' : color} />
                   } else if (routeName === PRIVATE_SCREEN_NAMES.ACTIVITY) {
-                    iconName = 'paw-sharp';
-                    return <Ionicicons style={{  }} name={iconName} size={25} color={focused ? 'black' : color} />
+                    return <BaseIcon name={ICON_NAMES.DOG_PAW} size={30} color={focused ? '#051C68' : color} />
                   } else if (routeName === PRIVATE_SCREEN_NAMES.PROFILE) {
-                    iconName = 'dog';
-                    return <MaterialIcon style={{ marginTop: 4 }} name={iconName} size={30} color={focused ? 'black' : color} />
+                    return <BaseIcon name={ICON_NAMES.DOG} size={30} color={focused ? '#051C68' : color} />
                   } else if (routeName === PRIVATE_SCREEN_NAMES.ACCOUNT) {
-                    iconName = 'person-sharp';
-                    return <Ionicicons style={{ }} name={iconName} size={25} color={focused ? 'black' : color} />
+                    return <BaseIcon name={ICON_NAMES.USER} size={30} color={focused ? '#051C68' : color} />
                   }
                 }, 
                 tabBarStyle: {
                     height: 50
                 },
-                headerShown: true,
+                headerShown: false,
                 tabBarShowLabel: false,
             })}
           >
-            <Tab.Screen name={PRIVATE_SCREEN_NAMES.MARKETPLACE} component={HomeStack} />
+            <Tab.Screen 
+              name={PRIVATE_SCREEN_NAMES.MARKETPLACE} 
+              component={HomeStack}
+            />
             
             <Tab.Screen name={PRIVATE_SCREEN_NAMES.ACTIVITY} component={ActivityScreen} />
 

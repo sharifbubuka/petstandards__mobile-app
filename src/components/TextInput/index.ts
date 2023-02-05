@@ -1,2 +1,7 @@
+import { FormControlledInput } from './Instances';
+
 export { default as BaseInput } from './BaseInput';
-export { default as DigitInput } from './DigitInput';
+
+export const Instances = {
+  FormControlledInput: FormControlledInput
+}

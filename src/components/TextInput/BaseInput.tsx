@@ -1,59 +1,89 @@
+import { BaseIcon, ICON_NAMES } from "components/Icon"
+import { BaseTypography } from "components/Typography"
 import { FC } from "react"
-import { Control, Controller } from "react-hook-form"
-import { TextInput, View, StyleSheet, Text } from "react-native"
+import { TextInput, View, StyleSheet, TextInputProps, ViewStyle, Pressable } from "react-native"
 
 type Props = {
-  name: string,
-  placeholder?: string,
-  keyboardType?: 'default' | 'email-address' | 'number-pad' | 'name-phone-pad' | 'numeric' | 'numbers-and-punctuation' | 'phone-pad' | 'visible-password' | 'url'
-  secureTextEntry?: boolean,
-  control: Control,
-  rules?: any
+  value: string
+  styles?: ViewStyle
+  icon?: ICON_NAMES
+  iconColor?: string
+  iconSize?: number,
+  onIconPress?: () => void
+  inputProps?: TextInputProps
+  onChangeText?: (text: string) => void
+  errorMessage?: string,
 }
 
-const BaseInput: FC<Props> = ({ control, name, placeholder, secureTextEntry = false, keyboardType = 'default', rules = {}}) => {
+const BaseInput: FC<Props> = ({
+  value = 'Bubuka Sharif',
+  styles,
+  icon,
+  iconColor = 'black',
+  iconSize = 20,
+  onIconPress,
+  inputProps,
+  onChangeText,
+  errorMessage
+}) => {
+
   return (
-    <Controller
-      control={control}
-      name={name}
-      rules={rules}
-      render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
-        <>
-          <View style={[styles.container, error ? { borderColor: 'red' } : { borderColor: 'e8e8e8' }]}>
-            <TextInput 
-              value={value} 
-              onChangeText={onChange}
-              onBlur={onBlur}
-              style={styles.input}
-              placeholder={placeholder} 
-              secureTextEntry={secureTextEntry}
-              keyboardType={keyboardType}
-            />
-          </View>
-          {error && <Text style={styles.error}>{error.message || 'Error'}</Text>}
-        </>
-      )}
-    />
+    <View style={[baseStyles.container, { marginBottom: styles?.marginBottom, marginVertical: styles?.marginVertical }]}>
+      <View style={[baseStyles.wrapper, styles, { marginBottom: 10 }]}>
+        <TextInput 
+          placeholder={inputProps ? inputProps.placeholder : 'Provide custom placeholder'}
+          value={value}
+          style={[baseStyles.input, { borderColor: errorMessage ? 'red' : 'blue' }]}
+          onChangeText={onChangeText}
+          cursorColor='blue'
+          {...inputProps} 
+        />
+        {(icon && !onIconPress) && 
+        <View style={baseStyles.icon}>
+          <BaseIcon name={icon} size={iconSize} color={iconColor} />
+        </View>}
+        {(icon && onIconPress) && 
+        <Pressable style={baseStyles.icon} onPress={onIconPress}>
+          <BaseIcon name={icon} size={iconSize} color={iconColor} />
+        </Pressable>}
+      </View>
+      {errorMessage &&
+        <BaseTypography styles={baseStyles.errorText} type="caption">{errorMessage}</BaseTypography>
+      }
+    </View>
   )
 }
 
 export default BaseInput;
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   container: {
+    width: '100%'
+  },
+  wrapper: {
+    position: 'relative',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: 'white',
-    width: '100%',
-    borderColor: 'e8e8e8',
-    borderWidth: 1,
-    paddingHorizontal: 16,
-    marginVertical: 10
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    overflow: 'hidden'
+  },
+  icon: {
+    position: 'absolute',
+    right: 15
   },
   input: {
-    paddingVertical: 10,
-    fontSize: 16
+    flex: 1,
+    padding: 10,
+    paddingHorizontal: 15,
+    borderBottomWidth: 5,
+    borderColor: 'blue',
+    fontSize: 15
   },
-  error: {
+  errorText: {
     color: 'red',
-    alignSelf: 'stretch'
+    fontWeight: "400"
   }
-})
+});
